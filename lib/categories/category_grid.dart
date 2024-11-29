@@ -4,7 +4,9 @@ import 'package:news/categories/category_item.dart';
 import 'package:news/models/category_model.dart';
 
 class CategoryGrid extends StatelessWidget {
-  const CategoryGrid({super.key});
+   CategoryGrid({super.key, required this.onCategorySelected});
+
+  void Function(CategoryModel) onCategorySelected;
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +19,13 @@ class CategoryGrid extends StatelessWidget {
             title: 'Sports'));
 
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(24),
       child: Column(
         children: [
           Align(
             alignment: AlignmentDirectional.topStart,
             child: Padding(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               child: Text(
                 'Pick your category of interest',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -40,9 +42,14 @@ class CategoryGrid extends StatelessWidget {
                   crossAxisSpacing: 24,
                 ),
                 itemCount: categories.length,
-                itemBuilder: (_, index) => CategoryItem(
-                  categoryModel: categories[index],
-                 index:index,)),
+                itemBuilder: (_, index) => GestureDetector(
+                  onTap: (){
+                    onCategorySelected(categories[index]);
+                  },
+                  child: CategoryItem(
+                    categoryModel: categories[index],
+                   index:index,),
+                )),
           )
         ],
       ),

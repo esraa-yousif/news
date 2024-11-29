@@ -14,9 +14,19 @@ static ThemeData lightTheme = ThemeData(
       fontSize: 22,
       fontWeight: FontWeight.bold,
       color: black,
-    )
+    ),
+    titleSmall: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: primary,
+    ) 
   ),
   appBarTheme: const AppBarTheme(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        bottom: Radius.circular(25),
+      ),
+    ),
     foregroundColor: white,
     color: primary,
     centerTitle: true,

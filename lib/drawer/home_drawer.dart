@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:news/app_theme.dart';
-import 'package:news/home_screen.dart';
-import 'package:news/settings/settings_tab.dart';
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({super.key});
+  HomeDrawer({super.key, required this.onDrawerItemSelected});
+
+  void Function(DrawerItem) onDrawerItemSelected;
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +37,14 @@ class HomeDrawer extends StatelessWidget {
                 child: Column(
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => HomeScreen()),
-                        // );
-                      },
+                      onTap: () => onDrawerItemSelected(DrawerItem.categories),
                       child: Row(
                         children: [
                           const Icon(Icons.menu),
                           const SizedBox(
                             width: 15,
                           ),
-                          Text('Categories',
+                          Text('categories',
                               style: Theme.of(context).textTheme.titleLarge),
                         ],
                       ),
@@ -58,13 +53,7 @@ class HomeDrawer extends StatelessWidget {
                       height: 8,
                     ),
                     GestureDetector(
-                      onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => const SettingsTab()),
-                        // );
-                      },
+                      onTap: () => onDrawerItemSelected(DrawerItem.settings),
                       child: Row(
                         children: [
                           const Icon(Icons.settings),
@@ -85,4 +74,9 @@ class HomeDrawer extends StatelessWidget {
       ),
     );
   }
+}
+
+enum DrawerItem{
+  categories,
+  settings,
 }

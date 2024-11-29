@@ -4,7 +4,7 @@ import 'package:news/models/category_model.dart';
 
 
 class CategoryItem extends StatelessWidget {
-  CategoryItem({required this.index, required this.categoryModel});
+  CategoryItem({super.key, required this.index, required this.categoryModel});
 
   CategoryModel categoryModel;
   int index;

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:news/app_theme.dart';
 
 class HomeDrawer extends StatelessWidget {
-  HomeDrawer({super.key, required this.onDrawerItemSelected});
+  const HomeDrawer({super.key, required this.onDrawerItemSelected});
 
-  void Function(DrawerItem) onDrawerItemSelected;
-
+  final void Function(DrawerItem) onDrawerItemSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +75,7 @@ class HomeDrawer extends StatelessWidget {
   }
 }
 
-enum DrawerItem{
+enum DrawerItem {
   categories,
   settings,
 }

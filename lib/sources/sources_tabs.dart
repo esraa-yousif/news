@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:news/models/source_model.dart';
+import 'package:news/models/sources_response/source.dart';
+import 'package:news/news/news_list.dart';
 import 'package:news/sources/source_item.dart';
 
-
 class SourcesTabs extends StatefulWidget {
-   SourcesTabs(this.sources, {super.key});
+  const SourcesTabs(this.sources, {super.key});
 
-  List<SourceModel> sources;
+  final List<Source> sources;
 
   @override
   State<SourcesTabs> createState() => _SourcesTabsState();
@@ -22,20 +22,22 @@ class _SourcesTabsState extends State<SourcesTabs> {
         DefaultTabController(
           length: widget.sources.length,
           child: TabBar(
-            onTap:
-             (index) {
-              selectedTabIndex = index;
-              setState(() {});
+              onTap: (index) {
+                selectedTabIndex = index;
+                setState(() {});
               },
-            tabAlignment: TabAlignment.start,
-            indicatorColor: Colors.transparent,
-            dividerColor: Colors.transparent,
-            isScrollable: true,
-            tabs: widget.sources.map((source) => SourceItem(
-              isSelected: widget.sources.indexOf(source) == selectedTabIndex,
-              sourceName: source.name)).toList()
-            ),
+              tabAlignment: TabAlignment.start,
+              indicatorColor: Colors.transparent,
+              dividerColor: Colors.transparent,
+              isScrollable: true,
+              tabs: widget.sources
+                  .map((source) => SourceItem(
+                      isSelected:
+                          widget.sources.indexOf(source) == selectedTabIndex,
+                      sourceName: source.name ?? ''))
+                  .toList()),
         ),
+         Expanded(child: NewsList(widget.sources[selectedTabIndex].id!))
       ],
     );
   }

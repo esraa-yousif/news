@@ -4,19 +4,44 @@ import 'package:news/categories/category_item.dart';
 import 'package:news/models/category_model.dart';
 
 class CategoryGrid extends StatelessWidget {
-   CategoryGrid({super.key, required this.onCategorySelected});
+  const CategoryGrid({super.key, required this.onCategorySelected});
 
-  void Function(CategoryModel) onCategorySelected;
+  final void Function(CategoryModel) onCategorySelected;
 
   @override
   Widget build(BuildContext context) {
-    final categories = List.generate(
-        6,
-        (index) => CategoryModel(
-            id: '$index',
-            imageName: 'ball.png',
-            color: AppTheme.red,
-            title: 'Sports'));
+    final categories = [
+      const CategoryModel(
+          id: 'sports',
+          imageName: 'ball.png',
+          color: AppTheme.red,
+          title: 'Sports'),
+      const CategoryModel(
+          id: 'general',
+          imageName: 'Politics.png',
+          color: Color(0xFF003E90),
+          title: 'Politics'),
+      const CategoryModel(
+          id: 'health',
+          imageName: 'health.png',
+          color: Color( 0xFFED1E79),
+          title: 'Health'),
+      const CategoryModel(
+          id: 'business',
+          imageName: 'bussines.png',
+          color: Color(0xFFCF7E48 ),
+          title: 'Besiness'),
+      const CategoryModel(
+          id: 'entertainment',
+          imageName: 'environment.png',
+          color: Color( 0xFF4882CF),
+          title: 'Entertainment'),
+      const CategoryModel(
+          id: 'science',
+          imageName: 'science.png',
+          color: Color( 0xFFF2D352),
+          title: 'Science'),
+    ];
 
     return Padding(
       padding: const EdgeInsets.all(24),
@@ -43,13 +68,14 @@ class CategoryGrid extends StatelessWidget {
                 ),
                 itemCount: categories.length,
                 itemBuilder: (_, index) => GestureDetector(
-                  onTap: (){
-                    onCategorySelected(categories[index]);
-                  },
-                  child: CategoryItem(
-                    categoryModel: categories[index],
-                   index:index,),
-                )),
+                      onTap: () {
+                        onCategorySelected(categories[index]);
+                      },
+                      child: CategoryItem(
+                        categoryModel: categories[index],
+                        index: index,
+                      ),
+                    )),
           )
         ],
       ),
